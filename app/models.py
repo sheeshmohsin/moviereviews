@@ -8,10 +8,10 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Movie(models.Model):
-	added_by = models.ForeignKey(User, blank=True, null=True)
+	added_by = models.ForeignKey(User)
 	name = models.CharField(max_length=150)
-	description = models.TextField(blank=True, null=True)
-	poster = models.ImageField(upload_to=get_upload_file_path, null=True, blank=True)
+	description = models.TextField()
+	poster = models.ImageField(upload_to=get_upload_file_path)
 
 	def __str__(self):
 		return self.name
@@ -25,7 +25,6 @@ class Movie(models.Model):
 		return reduce(lambda x, y: x + y, ratings) / (length * 1.0), length
 
 
-
 class Review(models.Model):
 	STATUS_CHOICES = (
 		(1, _("*")),
@@ -34,7 +33,7 @@ class Review(models.Model):
 		(4, _("****")),
 		(5, _("*****"))
 	)
-	added_by = models.ForeignKey(User)
+	added_by = models.ForeignKey(User, blank=True, null=True)
 	movie = models.ForeignKey(Movie)
 	rating = models.IntegerField(choices=STATUS_CHOICES, default=1)
 	review = models.TextField()
