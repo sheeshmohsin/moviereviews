@@ -8,6 +8,8 @@ This Project uses Sqlite3 as database.
 Cloning the project
 -------------------
 
+Run below command to clone the project in your local::
+
     $ git clone https://github.com/sheeshmohsin/moviereviews
 
 
