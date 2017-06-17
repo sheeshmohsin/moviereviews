@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+	<table border="1">
+		<thead>
+			<tr>
+				<td>Movie Name</td>
+				<td>Movie Poster</td>
+				<td>Avg. Ratings</td>
+				<td>Reviews Count</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for movie in movies %}
+			<tr>
+				<td><img src="/media/{{ movie.poster }}"/></td>
+				<td>{{ movie.name }}</td>
+				<td>{{ movie.avg_ratings_and_reviews_count.0 }}/5</td>
+				<td>{{ movie.avg_ratings_and_reviews_count.1 }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="pagination">
+	    <span class="step-links">
+	        {% if movies.has_previous %}
+	            <a href="?page={{ movies.previous_page_number }}">&#60;&nbsp;Previous</a>
+	        {% endif %}
+
+	        <span class="current">
+	            Page {{ movies.number }} of {{ movies.paginator.num_pages }}.
+	        </span>
+
+	        {% if movies.has_next %}
+	            <a href="?page={{ movies.next_page_number }}">Next&nbsp;&#62;</a>
+	        {% endif %}
+	    </span>
+	</div>
+{% endblock content %}
