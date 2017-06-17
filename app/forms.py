@@ -6,3 +6,7 @@ class MovieForm(forms.ModelForm):
 	class Meta:
 		model = Movie
 		fields = ("name", "description", "poster")
+		widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Movie Name'}),
+            'description': forms.Textarea(attrs={'placeholder': 'Movie Description'}),
+        }
