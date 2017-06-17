@@ -2,9 +2,13 @@
 from __future__ import unicode_literals
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.urlresolvers import NoReverseMatch, reverse
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from app.models import Movie, Review
+from app.forms import MovieForm
 
 # Create your views here.
 def home(request):
@@ -31,3 +35,17 @@ def movie(request, pk):
         return render(request, 'movie.html', {'movie': movie})
     else:
         raise Http404("Poll does not exist")
+
+@login_required
+def add_movie(request):
+    if request.method == 'POST':
+        form_obj = MovieForm(request.POST)
+        if form_obj.is_valid():
+            form_obj.added_by = request.user
+            form_obj.save()
+            pk_value = form_obj.id
+            return reverse('movie_detail', args=(pk_value,))
+        else:
+            return render(request, 'add_movie.html', {'form': form_obj})
+    form = MovieForm()
+    return render(request, 'add_movie.html', {'form': form})
