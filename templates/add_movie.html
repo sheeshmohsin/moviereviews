@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <p style="color:red">{{ form.non_field_errors }}</p>
+	<form enctype='multipart/form-data' action="/movie/add/" method="POST"> {% csrf_token %}
+		{{ form.name}}
+    	<p style="color:red">{{ form.name.errors }}</p>
+		<br>
+		{{ form.description }}
+    	<p style="color:red">{{ form.description.errors }}</p>
+		<br>
+		Movie Poster: {{ form.poster }}
+    	<p style="color:red">{{ form.poster.errors }}</p>
+		<br>
+		<input type="submit" />
+	</form>
+{% endblock content %}

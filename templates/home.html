@@ -11,11 +11,11 @@
 		</thead>
 		<tbody>
 			{% for movie in movies %}
-			<tr>
+			<tr onclick="window.location.href='/movie/{{movie.id}}/review/'" style="cursor:pointer;">
 				<td><img src="/media/{{ movie.poster }}"/></td>
 				<td>{{ movie.name }}</td>
-				<td>{{ movie.avg_ratings_and_reviews_count.0 }}/5</td>
-				<td>{{ movie.avg_ratings_and_reviews_count.1 }}</td>
+				<td>{% if movie.avg_ratings %}{{ movie.avg_ratings }}/5{%else%}No Ratings Yet{% endif %}</td>
+				<td>{{ movie.reviews_count }}</td>
 			</tr>
 			{% endfor %}
 		</tbody>

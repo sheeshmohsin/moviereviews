@@ -1,0 +1,10 @@
+{% if request.user.is_authenticated %}
+	Hello {{request.user.username}}, 
+	<a href="/">Home</a>
+	<a href="/movie/add/">Add Movie</a>
+	<a href="/admin/logout/?next={{request.path}}">Logout</a>
+{% else %}
+	Hello Anonymous, 
+	<a href="/">Home</a>
+	<a href="/admin/login/?next={{request.path}}">Login</a>
+{% endif %}
