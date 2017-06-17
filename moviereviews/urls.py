@@ -21,6 +21,7 @@ from app import views
 
 urlpatterns = [
     url(r'^$', views.home),
-    url(r'^movie/(?P<pk>\d+)/$', views.movie),
+    url(r'^movie/(?P<pk>\d+)/$', views.movie, name='movie_detail'),
+    url(r'^movie/add/$', views.add_movie),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
