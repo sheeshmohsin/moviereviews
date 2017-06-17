@@ -5,6 +5,12 @@ A short description of the project.
 
 This Project uses Sqlite3 as database.
 
+Cloning the project
+-------------------
+
+    $ git clone https://github.com/sheeshmohsin/moviereviews
+
+
 Getting up and running
 ----------------------
 
